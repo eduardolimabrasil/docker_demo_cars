@@ -1,0 +1,17 @@
+version: "3"
+
+services:
+    postgres:
+        image: postgres
+        container_name: baseimages_postgres_1
+        environment:
+            - POSTGRES_PASSWORD=dockerpresentation
+        ports:
+            - "5432:5432"
+    pgAdmin:
+        image: dpage/pgadmin4
+        environment:
+            - PGADMIN_DEFAULT_EMAIL=dockerpresentation@pgadmin.org
+            - PGADMIN_DEFAULT_PASSWORD=admin
+        ports:
+            - "2090:80"
