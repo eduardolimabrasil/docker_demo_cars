@@ -1,2 +1,12 @@
 *.sqlite3
 *.pyc
+.idea
+.vscode
+launch.json
+*.pyc
+*.log
+venv
+*.zip
+*.bat
+*.xlsx
+*.rar
