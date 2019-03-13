@@ -6,3 +6,4 @@ class Carro(models.Model):
     ano = models.IntegerField()
     marca = models.CharField(max_length=15)
     tipo = models.CharField(max_length=10)
+    preco = models.FloatField()
