@@ -1,0 +1,23 @@
+FROM python:3.6-alpine
+ENV PYTHONUNBUFFERED 1
+
+RUN apk add --no-cache --virtual .build-deps \
+    ca-certificates gcc postgresql-dev linux-headers musl-dev \
+    libffi-dev jpeg-dev zlib-dev 
+
+RUN mkdir /django_code
+WORKDIR /django_code
+COPY requirements.txt /django_code/
+
+RUN pip3 install --upgrade pip
+RUN pip3 install -r requirements.txt 
+COPY . /django_code/
+
+EXPOSE 8000
+
+ENV DB_NAME=''
+ENV DB_USER=''
+ENV BD_PASS=''
+
+
+CMD ["gunicorn","automatic_report.wsgi","-w","5","-t","3000","-b","0.0.0.0:8000"]
