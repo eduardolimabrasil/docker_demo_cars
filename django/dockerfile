@@ -15,9 +15,8 @@ COPY . /django_code/
 
 EXPOSE 8000
 
-ENV DB_NAME=''
-ENV DB_USER=''
-ENV BD_PASS=''
+ENV DB_NAME='carros'
+ENV DB_USER='postgres'
+ENV BD_PASS='dockerpresentation'
 
-
-CMD ["gunicorn","automatic_report.wsgi","-w","5","-t","3000","-b","0.0.0.0:8000"]
+ENTRYPOINT ["python3","manage.py","runserver","0.0.0.0:8000"]
