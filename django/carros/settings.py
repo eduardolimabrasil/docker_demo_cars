@@ -81,10 +81,10 @@ WSGI_APPLICATION = 'carros.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': os.environ.get('DB_NAME'),
-        'USER': os.environ.get('DB_USER'),
-        'PASSWORD': os.environ.get('BD_PASS'),
-        'HOST':'localhost',
+        'NAME': os.environ.get('DB_NAME','carros'),
+        'USER': os.environ.get('DB_USER', 'postgres'),
+        'PASSWORD': os.environ.get('BD_PASS', 'dockerpresentation'),
+        'HOST':os.environ.get('DB_HOST','postgres'),
         'PORT': '5432',
     }
 }
