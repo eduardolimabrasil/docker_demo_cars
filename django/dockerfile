@@ -1,0 +1,22 @@
+FROM python:3.6-alpine
+ENV PYTHONUNBUFFERED 1
+
+RUN apk add --no-cache --virtual .build-deps \
+    ca-certificates gcc postgresql-dev linux-headers musl-dev \
+    libffi-dev jpeg-dev zlib-dev 
+
+RUN mkdir /django_code
+WORKDIR /django_code
+COPY requirements.txt /django_code/
+
+RUN pip3 install --upgrade pip
+RUN pip3 install -r requirements.txt 
+COPY . /django_code/
+
+EXPOSE 8000
+
+ENV DB_NAME='carros'
+ENV DB_USER='postgres'
+ENV BD_PASS='dockerpresentation'
+
+ENTRYPOINT ["python3","manage.py","runserver","0.0.0.0:8000"]

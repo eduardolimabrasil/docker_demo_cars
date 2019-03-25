@@ -8,6 +8,8 @@ services:
             - POSTGRES_PASSWORD=dockerpresentation
         ports:
             - "5432:5432"
+        networks:
+            - db
     pgAdmin:
         image: dpage/pgadmin4
         environment:
@@ -15,3 +17,18 @@ services:
             - PGADMIN_DEFAULT_PASSWORD=admin
         ports:
             - "2090:80"
+        networks:
+            - db
+    django:
+        image: carro_django:0.0.0.5
+        ports:
+            - "8000:8000"
+        networks:
+            - db
+        links:
+            - postgres
+        depends_on:
+            - postgres
+networks:
+    db:
+        driver: bridge 
